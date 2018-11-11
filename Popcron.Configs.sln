@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popcron.Configs", "configs\Popcron.Configs.csproj", "{12AD2D77-9700-4638-96F0-E7821B37A09D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popcron.Configs", "Popcron.Configs\Popcron.Configs.csproj", "{12AD2D77-9700-4638-96F0-E7821B37A09D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
