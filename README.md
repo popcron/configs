@@ -1,5 +1,5 @@
 # Configs
-A simple config file API with type serialization, primarily used for games.
+A simple config file API with type serialization, primarily used for games. In the case of use in Unity, the Type and Value fields are serialized and hot-reload friendly.
 
 ## Requirements
 - .NET Framework 2.0
@@ -25,12 +25,19 @@ else
 }
 ```
 
-### Another example
+## Loading
 ```cs
 Config audioSettings = Config.Load("audioSettings");
 float volume = (float)audioSettings["volume"];
 float pan = (float)audioSettings["pan"];
 float pitch = (float)audioSettings["pitch"];
+```
+
+## Saving
+```
+Config audioSettings = Config.Load("audioSettings");
+audioSettings["volume"] = 0f;
+audioSettings.Save();
 ```
 
 ## Format
