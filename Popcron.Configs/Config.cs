@@ -64,7 +64,7 @@ namespace Popcron.Configs
             {
                 if (values[i].Key == key)
                 {
-                    if (Settings.throwErrors)
+                    if (Settings.ThrowsExceptions)
                     {
                         throw new DuplicateNameException("Value with key " + key + " already exists");
                     }
@@ -93,7 +93,7 @@ namespace Popcron.Configs
                 }
             }
 
-            if (Settings.throwErrors)
+            if (Settings.ThrowsExceptions)
             {
                 throw new KeyNotFoundException("Value with key " + key + " not found");
             }
@@ -135,7 +135,7 @@ namespace Popcron.Configs
                     }
                 }
 
-                if (Settings.throwErrors)
+                if (Settings.ThrowsExceptions)
                 {
                     throw new KeyNotFoundException("Value with key " + key + " not found");
                 }
@@ -155,7 +155,7 @@ namespace Popcron.Configs
                     }
                 }
 
-                if (Settings.throwErrors)
+                if (Settings.ThrowsExceptions)
                 {
                     throw new KeyNotFoundException("Value with key " + key + " not found");
                 }
@@ -171,8 +171,8 @@ namespace Popcron.Configs
         {
             List<string> configs = new List<string>();
 
-            path = path ?? Settings.directory;
-            string[] files = Directory.GetFiles(path, "*." + Settings.extension, SearchOption.AllDirectories);
+            path = path ?? Settings.Directory;
+            string[] files = Directory.GetFiles(path, "*." + Settings.Extension, SearchOption.AllDirectories);
             for (int i = 0; i < files.Length; i++)
             {
                 configs.Add(Path.GetFileNameWithoutExtension(files[i]));
@@ -187,8 +187,8 @@ namespace Popcron.Configs
         /// <param name="configName"></param>
         public static Config Load(string configName, string path = null)
         {
-            path = path ?? Settings.directory;
-            path += configName + "." + Settings.extension;
+            path = path ?? Settings.Directory;
+            path += configName + "." + Settings.Extension;
 
             if (File.Exists(path))
             {
@@ -200,7 +200,7 @@ namespace Popcron.Configs
             }
             else
             {
-                if (Settings.throwErrors)
+                if (Settings.ThrowsExceptions)
                 {
                     throw new FileNotFoundException("Config by the name of " + configName + " not found at " + path);
                 }
@@ -219,7 +219,7 @@ namespace Popcron.Configs
         {
             if (config == null)
             {
-                if (Settings.throwErrors)
+                if (Settings.ThrowsExceptions)
                 {
                     throw new NullReferenceException("Config is null");
                 }
@@ -227,8 +227,8 @@ namespace Popcron.Configs
             }
 
             //path resolve
-            path = path ?? Settings.directory;
-            path += config.Name + "." + Settings.extension;
+            path = path ?? Settings.Directory;
+            path += config.Name + "." + Settings.Extension;
 
             string text = Serialize(config);
             File.WriteAllText(path, text);
@@ -256,8 +256,8 @@ namespace Popcron.Configs
         public static string Serialize(Config config)
         {
             string text = "";
-            char typeDelim = Settings.typeDelimeter;
-            char valueDelim = Settings.valueDelimeter;
+            char typeDelim = Settings.TypeDelimeter;
+            char valueDelim = Settings.ValueDelimeter;
 
             for (int i = 0; i < config.values.Count; i++)
             {
@@ -278,7 +278,7 @@ namespace Popcron.Configs
                 }
                 else
                 {
-                    if (Settings.throwErrors)
+                    if (Settings.ThrowsExceptions)
                     {
                         throw new Exception("Cant serialize " + config.values[i].Type + " to string");
                     }
@@ -292,8 +292,8 @@ namespace Popcron.Configs
         {
             Config config = new Config(configName);
             string[] lines = text.Split('\n');
-            char typeDelim = Settings.typeDelimeter;
-            char valueDelim = Settings.valueDelimeter;
+            char typeDelim = Settings.TypeDelimeter;
+            char valueDelim = Settings.ValueDelimeter;
             config.values = new List<Variable>(lines.Length);
 
             for (int i = 0; i < lines.Length; i++)
@@ -322,7 +322,7 @@ namespace Popcron.Configs
                     }
                     else
                     {
-                        if (Settings.throwErrors)
+                        if (Settings.ThrowsExceptions)
                         {
                             throw new Exception("Cant deserialize " + type + " from string");
                         }
