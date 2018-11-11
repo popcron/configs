@@ -42,3 +42,16 @@ audioSettings.Save();
 
 ## Format
 The format in use follows the `name:type=value` pattern. If a type isnt given, it will assume a string.
+
+## Settings
+The settings class provides the ability to customize some of the behaviour of the configs. The `Config` class has a static property that uses the Settings, if none is provided, it will use a default one instead.
+
+**Extension**: The extension to use when saving and loading config files, default is "cfg".
+
+**ThrowsExceptions**: If this is set to true, it will throw exception on errors.
+
+**Directory**: This is the default directory to use when saving and loading, if set to null, it will use the base directory of the executable.
+
+**TypeDelimeter**: The character used for splitting the name from the type field, default is ':'.
+
+**ValueDelimeter**: The character used for splitting the type from the value, default is '='.
